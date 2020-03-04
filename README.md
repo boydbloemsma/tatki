@@ -16,13 +16,7 @@
 
 ### 🏠 [Homepage](https://github.com/boydbloemsma/tatki#readme)
 
-## Install
-
-```sh
-npm install
-```
-
-## Usage
+### Usage
 
 ```sh
 tatki
