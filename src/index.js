@@ -46,27 +46,17 @@ function task() {
       message: 'Add a new task to the TODO:',
     },
   ]).then((answers) => {
-    taskArray.push(answers.task);
-    subTaskConfirm();
-  });
-}
-
-function taskConfirm() {
-  inquirer.prompt([
-    {
-      type: 'confirm',
-      name: 'taskConfirm',
-      message: 'Want to add another task?',
-      default: true,
-    },
-  ])
-    .then((answers) => {
-      if (answers.taskConfirm) {
-        task();
+    if (answers.task !== '') {
+      if (answers.task.toLowerCase() === 'end') {
+        console.log('goodbye');
       } else {
-        console.log(taskArray, subTaskArray);
+        taskArray.push(answers.task);
+        subTask();
       }
-    });
+    } else {
+      task();
+    }
+  });
 }
 
 function subTask() {
@@ -77,27 +67,17 @@ function subTask() {
       message: 'Add a new subtask to the TODO:',
     },
   ]).then((answers) => {
-    subTaskArray.push(answers.subTask);
-    subTaskConfirm();
-  });
-}
-
-function subTaskConfirm() {
-  inquirer.prompt([
-    {
-      type: 'confirm',
-      name: 'subTaskConfirm',
-      message: 'Want to add a subtask?',
-      default: true,
-    },
-  ])
-    .then((answers) => {
-      if (answers.subTaskConfirm) {
-        subTask();
+    if (answers.subTask !== '') {
+      if (answers.subTask.toLowerCase() === 'end') {
+        console.log('goodbye');
       } else {
-        taskConfirm();
+        subTaskArray.push(answers.subTask);
+        subTask();
       }
-    });
+    } else {
+      task();
+    }
+  });
 }
 
 if (existingRead) {
